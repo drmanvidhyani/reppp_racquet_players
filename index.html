@@ -291,11 +291,12 @@ footer a{color:#cfd6ec}
 <div class="sticky"><a class="btn btn-wa" data-wa href="https://wa.me/919289303555?text=Hi+HOME%2C+I+met+you+at+the+REPPP+event.+I%27d+like+to+book+my+free+injury+screening.">WhatsApp to Book Free Screening</a></div>
 
 <script>
-/* Tag each REPPP day so you can see which day the leads came from.
-   Share  .../reppp_racquet_players/?d=9   for 9 Oct and  ?d=11  for 11 Oct. */
+/* Optional event tag so you can see which event a lead came from.
+   Plain link:   .../reppp_racquet_players/
+   Tagged link:  .../reppp_racquet_players/?e=padel-nov   (any short label: letters, numbers, - _) */
 (function () {
-  var d = new URLSearchParams(location.search).get('d');
-  var tag = d === '9' ? ' (9 Oct)' : d === '11' ? ' (11 Oct)' : '';
+  var e = (new URLSearchParams(location.search).get('e') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 24);
+  var tag = e ? ' (' + e + ')' : '';
   var msg = "Hi HOME, I met you at the REPPP event" + tag + ". I'd like to book my free injury screening.";
   var url = "https://wa.me/919289303555?text=" + encodeURIComponent(msg);
   document.querySelectorAll('[data-wa]').forEach(function (a) { a.href = url; });
